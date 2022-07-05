@@ -1,0 +1,9 @@
+GROUP BY
+
+1. SELECT courses.year as anno_corso, count(students.id) as quanti FROM courses JOIN degrees ON courses.degree_id = degrees.id JOIN students ON degrees.id = students.degree_id GROUP BY courses.year; 
+
+2. SELECT COUNT(teachers.id) as numero_insegnanti, departments.address FROM teachers JOIN course_teacher ON teachers.id = course_teacher.teacher_id JOIN courses ON course_teacher.course_id = courses.id JOIN degrees ON courses.degree_id = degrees.id JOIN departments ON degrees.department_id = departments.id GROUP BY departments.address; 
+
+3. SELECT exams.date as data_esame, AVG(exam_student.vote) as media_voti_appello FROM courses JOIN exams ON courses.id = exams.course_id JOIN exam_student ON exams.id = exam_student.exam_id GROUP BY exams.date; 
+
+4. SELECT COUNT(degrees.id) as corsi_di_laurea FROM departments JOIN degrees ON departments.id = degrees.department_id; 
