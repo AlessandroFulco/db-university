@@ -10,6 +10,6 @@ EX con JOIN
 
 5. SELECT * FROM degrees JOIN courses ON degrees.id = courses.degree_id JOIN course_teacher ON courses.id = course_teacher.course_id JOIN teachers ON course_teacher.teacher_id = teachers.id; 
 
-6. SELECT DISTINCT teachers.id, CONCAT(teachers.surname, ' ', teachers.name), courses.*, degrees.*, departments.* FROM teachers JOIN course_teacher ON teachers.id = course_teacher.teacher_id JOIN courses ON course_teacher.course_id = courses.id JOIN degrees ON courses.degree_id = degrees.id JOIN departments ON degrees.department_id = departments.id WHERE departments.name = 'dipartimento di matematica' ORDER BY teachers.id, CONCAT(teachers.surname, ' ', teachers.name); 
+6. SELECT teachers.id, departments.name as nome_dipartimento, CONCAT(teachers.surname, ' ', teachers.name) as nome_docente FROM departments JOIN degrees ON departments.id = degrees.department_id JOIN courses ON degrees.id = courses.degree_id JOIN course_teacher ON courses.id = course_teacher.course_id JOIN teachers ON course_teacher.teacher_id = teachers.id WHERE departments.name = 'dipartimento di matematica' GROUP BY teachers.id ORDER BY CONCAT(teachers.surname, ' ', teachers.name);  
 
 7. SELECT CONCAT(students.id, ' ', courses.name), COUNT(exams.id) as tentativi FROM students JOIN exam_student ON students.id = exam_student.student_id JOIN exams ON exam_student.exam_id = exams.id JOIN courses ON exams.course_id = courses.id GROUP BY students.id, courses.id ORDER BY CONCAT(students.id, ' ', courses.name) ASC; 
